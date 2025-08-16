@@ -123,23 +123,6 @@
         }
     }
 
-    @keyframes logoFloat {
-        0%, 100% { transform: translateY(0); }
-        50% { transform: translateY(-10px); }
-    }
-
-    .neon-text {
-        fill: none;
-        stroke: #00aeff;
-        stroke-width: 2;
-        filter: drop-shadow(0 0 10px #00aeff);
-    }
-
-    .neon-fill {
-        fill: #00aeff;
-        filter: drop-shadow(0 0 15px #00aeff);
-    }
-
     /* Glowing particles around logo */
     .glow-particle {
         position: absolute;
@@ -234,6 +217,11 @@
         background: linear-gradient(90deg, transparent, #00aeff, transparent);
         animation: lineGlow 2s infinite;
         box-shadow: 0 0 20px rgba(0, 174, 255, 0.5);
+    }
+
+    @keyframes lineGlow {
+        0%, 100% { opacity: 0.5; }
+        50% { opacity: 1; }
     }
 
     /* Team Cards with Neon Effect */
@@ -412,6 +400,17 @@
         text-shadow: 0 0 10px rgba(0, 174, 255, 0.8);
     }
 
+    /* Team card action buttons */
+    .team-card .action-buttons {
+        margin-top: 20px;
+        gap: 15px;
+    }
+
+    .team-card .btn {
+        padding: 12px 30px;
+        font-size: 0.9em;
+    }
+
     /* Cyber Lines Animation */
     .cyber-lines {
         position: fixed;
@@ -497,6 +496,8 @@
         .teams-grid { grid-template-columns: 1fr; }
         .action-buttons { flex-direction: column; align-items: center; }
         .btn { width: 100%; max-width: 300px; justify-content: center; }
+        .team-card .action-buttons { flex-direction: row; }
+        .team-card .btn { width: auto; max-width: none; }
     }
 </style>
 </head>
@@ -535,7 +536,12 @@
                 <span class="team-icon">🛡️</span>
                 <h3>Hava Savunma Sistemleri</h3>
                 <p>Gelişmiş radar teknolojileri ve füze savunma sistemleri ile hava sahası güvenliğinde yenilikçi çözümler geliştiriyoruz.</p>
-                <a href="https://gencugurcan122-blip.github.io/partech_web_a/air-defense.html" target="_blank" class="status-badge status-active">Detayları Görüntüle →</a>
+                <div class="action-buttons">
+                    <a href="https://gencugurcan122-blip.github.io/partech_web_a/air-defense.html" target="_blank" class="btn btn-primary">
+                        <span>📝</span>
+                        <span>Detayları Görüntüle</span>
+                    </a>
+                </div>
             </div>
 
             <div class="team-card">
