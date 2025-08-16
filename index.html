@@ -1,0 +1,654 @@
+<!DOCTYPE html>
+<html lang="tr">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>IEEE KBU | PARTECH - Savunma Teknolojileri Yarışması</title>
+<style>
+    * {
+        margin: 0;
+        padding: 0;
+        box-sizing: border-box;
+    }
+
+    body {
+        font-family: 'Segoe UI', Tahoma, Geneva, Verdana, sans-serif;
+        background: #0a0e27;
+        color: white;
+        overflow-x: hidden;
+        position: relative;
+    }
+
+    /* Animated Background */
+    .bg-animation {
+        position: fixed;
+        width: 100%;
+        height: 100%;
+        top: 0;
+        left: 0;
+        z-index: -2;
+        background: radial-gradient(ellipse at center, #0d1b3d 0%, #0a0e27 50%, #000000 100%);
+    }
+
+    /* Animated Stars */
+    .stars {
+        position: fixed;
+        top: 0;
+        left: 0;
+        width: 100%;
+        height: 100%;
+        z-index: -1;
+    }
+
+    .star {
+        position: absolute;
+        width: 2px;
+        height: 2px;
+        background: white;
+        border-radius: 50%;
+        animation: twinkle 4s infinite;
+    }
+
+    @keyframes twinkle {
+        0%, 100% { opacity: 0; }
+        50% { opacity: 1; }
+    }
+
+    /* Grid Pattern Overlay */
+    .grid-overlay {
+        position: fixed;
+        top: 0;
+        left: 0;
+        width: 100%;
+        height: 100%;
+        background-image: 
+            linear-gradient(rgba(0, 174, 255, 0.03) 1px, transparent 1px),
+            linear-gradient(90deg, rgba(0, 174, 255, 0.03) 1px, transparent 1px);
+        background-size: 50px 50px;
+        z-index: -1;
+        animation: gridMove 20s linear infinite;
+    }
+
+    @keyframes gridMove {
+        0% { transform: translate(0, 0); }
+        100% { transform: translate(50px, 50px); }
+    }
+
+    /* Header Section */
+    header {
+        padding: 60px 20px 40px;
+        text-align: center;
+        position: relative;
+        background: linear-gradient(180deg, rgba(13, 27, 61, 0.8) 0%, rgba(10, 14, 39, 0.4) 100%);
+        backdrop-filter: blur(10px);
+        border-bottom: 1px solid rgba(0, 174, 255, 0.2);
+    }
+
+    /* Neon Logo Container */
+    .logo-container {
+        margin-bottom: 40px;
+        position: relative;
+        display: inline-block;
+    }
+
+    .logo {
+        width: 250px;
+        height: 250px;
+        position: relative;
+        display: flex;
+        align-items: center;
+        justify-content: center;
+        margin: 0 auto;
+    }
+
+    .logo-img {
+        width: 100%;
+        height: 100%;
+        object-fit: contain;
+        filter: drop-shadow(0 0 30px rgba(0, 174, 255, 0.8))
+                drop-shadow(0 0 60px rgba(0, 174, 255, 0.4));
+        animation: neonPulse 2s ease-in-out infinite;
+    }
+
+    @keyframes neonPulse {
+        0%, 100% {
+            filter: drop-shadow(0 0 30px rgba(0, 174, 255, 0.8))
+                    drop-shadow(0 0 60px rgba(0, 174, 255, 0.4))
+                    brightness(1);
+        }
+        50% {
+            filter: drop-shadow(0 0 40px rgba(0, 174, 255, 1))
+                    drop-shadow(0 0 80px rgba(0, 174, 255, 0.6))
+                    brightness(1.1);
+        }
+    }
+
+    @keyframes logoFloat {
+        0%, 100% { transform: translateY(0); }
+        50% { transform: translateY(-10px); }
+    }
+
+    .neon-text {
+        fill: none;
+        stroke: #00aeff;
+        stroke-width: 2;
+        filter: drop-shadow(0 0 10px #00aeff);
+    }
+
+    .neon-fill {
+        fill: #00aeff;
+        filter: drop-shadow(0 0 15px #00aeff);
+    }
+
+    /* Glowing particles around logo */
+    .glow-particle {
+        position: absolute;
+        width: 4px;
+        height: 4px;
+        background: #00aeff;
+        border-radius: 50%;
+        animation: orbit 10s linear infinite;
+    }
+
+    @keyframes orbit {
+        0% {
+            transform: rotate(0deg) translateX(120px) rotate(0deg);
+            opacity: 0;
+        }
+        10% {
+            opacity: 1;
+        }
+        90% {
+            opacity: 1;
+        }
+        100% {
+            transform: rotate(360deg) translateX(120px) rotate(-360deg);
+            opacity: 0;
+        }
+    }
+
+    h1 {
+        font-size: 3.5em;
+        margin-bottom: 10px;
+        font-weight: 700;
+        text-transform: uppercase;
+        letter-spacing: 3px;
+        background: linear-gradient(135deg, #00aeff, #0056ff);
+        -webkit-background-clip: text;
+        -webkit-text-fill-color: transparent;
+        background-clip: text;
+        text-shadow: 0 0 30px rgba(0, 174, 255, 0.5);
+        animation: titleGlow 2s ease-in-out infinite alternate;
+    }
+
+    @keyframes titleGlow {
+        from {
+            filter: brightness(1);
+            transform: scale(1);
+        }
+        to {
+            filter: brightness(1.2);
+            transform: scale(1.02);
+        }
+    }
+
+    .subtitle {
+        font-size: 1.3em;
+        color: rgba(255, 255, 255, 0.9);
+        margin-bottom: 10px;
+        text-shadow: 0 2px 10px rgba(0, 174, 255, 0.3);
+    }
+
+    .tagline {
+        font-size: 1em;
+        color: rgba(0, 174, 255, 0.7);
+        font-style: italic;
+        letter-spacing: 1px;
+    }
+
+    /* Main Content */
+    .container {
+        max-width: 1200px;
+        margin: 60px auto;
+        padding: 0 20px;
+    }
+
+    .section-title {
+        text-align: center;
+        font-size: 2.5em;
+        margin-bottom: 50px;
+        position: relative;
+        padding-bottom: 20px;
+        text-transform: uppercase;
+        letter-spacing: 2px;
+    }
+
+    .section-title::after {
+        content: '';
+        position: absolute;
+        bottom: 0;
+        left: 50%;
+        transform: translateX(-50%);
+        width: 150px;
+        height: 3px;
+        background: linear-gradient(90deg, transparent, #00aeff, transparent);
+        animation: lineGlow 2s infinite;
+        box-shadow: 0 0 20px rgba(0, 174, 255, 0.5);
+    }
+
+    /* Team Cards with Neon Effect */
+    .teams-grid {
+        display: grid;
+        grid-template-columns: repeat(auto-fit, minmax(320px, 1fr));
+        gap: 40px;
+        margin-bottom: 60px;
+    }
+
+    .team-card {
+        background: linear-gradient(135deg, rgba(0, 174, 255, 0.05) 0%, rgba(0, 86, 255, 0.05) 100%);
+        border-radius: 20px;
+        padding: 40px 30px;
+        text-align: center;
+        backdrop-filter: blur(10px);
+        border: 2px solid rgba(0, 174, 255, 0.2);
+        transition: all 0.4s cubic-bezier(0.4, 0, 0.2, 1);
+        position: relative;
+        overflow: hidden;
+    }
+
+    .team-card::before {
+        content: '';
+        position: absolute;
+        top: -100%;
+        left: -100%;
+        width: 300%;
+        height: 300%;
+        background: radial-gradient(circle, rgba(0, 174, 255, 0.1) 0%, transparent 40%);
+        transition: all 0.5s ease;
+        animation: rotate 20s linear infinite;
+    }
+
+    @keyframes rotate {
+        0% { transform: rotate(0deg); }
+        100% { transform: rotate(360deg); }
+    }
+
+    .team-card:hover {
+        transform: translateY(-15px) scale(1.02);
+        box-shadow: 
+            0 20px 40px rgba(0, 174, 255, 0.3),
+            inset 0 0 30px rgba(0, 174, 255, 0.1);
+        border-color: #00aeff;
+    }
+
+    .team-icon {
+        font-size: 4em;
+        margin-bottom: 20px;
+        display: block;
+        filter: drop-shadow(0 0 20px rgba(0, 174, 255, 0.5));
+        animation: iconFloat 3s ease-in-out infinite;
+    }
+
+    .team-card:nth-child(1) .team-icon { animation-delay: 0s; }
+    .team-card:nth-child(2) .team-icon { animation-delay: 0.5s; }
+    .team-card:nth-child(3) .team-icon { animation-delay: 1s; }
+
+    @keyframes iconFloat {
+        0%, 100% { transform: translateY(0) rotate(0deg); }
+        50% { transform: translateY(-10px) rotate(5deg); }
+    }
+
+    .team-card h3 {
+        font-size: 1.6em;
+        margin-bottom: 15px;
+        color: #00aeff;
+        text-shadow: 0 0 10px rgba(0, 174, 255, 0.5);
+        font-weight: 600;
+    }
+
+    .team-card p {
+        color: rgba(255, 255, 255, 0.8);
+        margin-bottom: 25px;
+        font-size: 1em;
+        line-height: 1.6;
+    }
+
+    .status-badge {
+        display: inline-block;
+        padding: 8px 20px;
+        border-radius: 25px;
+        font-size: 0.9em;
+        font-weight: bold;
+        text-transform: uppercase;
+        letter-spacing: 1px;
+        animation: badgePulse 2s infinite;
+        text-decoration: none;
+        transition: all 0.3s ease;
+    }
+
+    .status-coming {
+        background: linear-gradient(135deg, rgba(255, 193, 7, 0.2), rgba(255, 152, 0, 0.2));
+        color: #ffd54f;
+        border: 1px solid rgba(255, 193, 7, 0.5);
+        box-shadow: 0 0 20px rgba(255, 193, 7, 0.3);
+    }
+
+    .status-active {
+        background: linear-gradient(135deg, rgba(76, 175, 80, 0.2), rgba(0, 174, 255, 0.2));
+        color: #00ff88;
+        border: 1px solid rgba(0, 255, 136, 0.5);
+        box-shadow: 0 0 20px rgba(0, 255, 136, 0.3);
+        cursor: pointer;
+    }
+
+    .status-active:hover {
+        transform: scale(1.05);
+        box-shadow: 0 0 30px rgba(0, 255, 136, 0.5);
+        background: linear-gradient(135deg, rgba(76, 175, 80, 0.3), rgba(0, 174, 255, 0.3));
+    }
+
+    @keyframes badgePulse {
+        0%, 100% { box-shadow: 0 0 20px rgba(255, 193, 7, 0.3); }
+        50% { box-shadow: 0 0 30px rgba(255, 193, 7, 0.5); }
+    }
+
+    /* Neon Action Buttons */
+    .action-buttons {
+        display: flex;
+        gap: 30px;
+        justify-content: center;
+        margin-top: 60px;
+        flex-wrap: wrap;
+    }
+
+    .btn {
+        padding: 18px 50px;
+        border-radius: 50px;
+        text-decoration: none;
+        font-weight: 600;
+        font-size: 1.1em;
+        transition: all 0.3s ease;
+        position: relative;
+        overflow: hidden;
+        display: inline-flex;
+        align-items: center;
+        gap: 12px;
+        text-transform: uppercase;
+        letter-spacing: 1px;
+    }
+
+    .btn-primary {
+        background: linear-gradient(135deg, #00aeff, #0056ff);
+        color: white;
+        box-shadow: 
+            0 5px 25px rgba(0, 174, 255, 0.4),
+            inset 0 0 0 1px rgba(255, 255, 255, 0.1);
+        border: 1px solid rgba(0, 174, 255, 0.5);
+    }
+
+    .btn-primary:hover {
+        transform: translateY(-5px) scale(1.05);
+        box-shadow: 
+            0 10px 40px rgba(0, 174, 255, 0.6),
+            inset 0 0 20px rgba(255, 255, 255, 0.2);
+        filter: brightness(1.2);
+    }
+
+    .btn-secondary {
+        background: transparent;
+        color: #00aeff;
+        border: 2px solid #00aeff;
+        box-shadow: 
+            0 0 20px rgba(0, 174, 255, 0.2),
+            inset 0 0 20px rgba(0, 174, 255, 0.05);
+    }
+
+    .btn-secondary:hover {
+        background: rgba(0, 174, 255, 0.1);
+        transform: translateY(-5px) scale(1.05);
+        box-shadow: 
+            0 0 30px rgba(0, 174, 255, 0.4),
+            inset 0 0 20px rgba(0, 174, 255, 0.1);
+        text-shadow: 0 0 10px rgba(0, 174, 255, 0.8);
+    }
+
+    /* Cyber Lines Animation */
+    .cyber-lines {
+        position: fixed;
+        top: 0;
+        left: 0;
+        width: 100%;
+        height: 100%;
+        pointer-events: none;
+        z-index: -1;
+        opacity: 0.3;
+    }
+
+    .cyber-line {
+        position: absolute;
+        background: linear-gradient(90deg, transparent, #00aeff, transparent);
+        animation: lineMove 10s linear infinite;
+    }
+
+    .horizontal {
+        width: 100%;
+        height: 1px;
+    }
+
+    .vertical {
+        width: 1px;
+        height: 100%;
+    }
+
+    @keyframes lineMove {
+        0% { transform: translateX(-100%); }
+        100% { transform: translateX(100%); }
+    }
+
+    /* Footer */
+    footer {
+        text-align: center;
+        padding: 40px;
+        margin-top: 100px;
+        background: linear-gradient(180deg, rgba(10, 14, 39, 0.4) 0%, rgba(13, 27, 61, 0.8) 100%);
+        border-top: 1px solid rgba(0, 174, 255, 0.2);
+        position: relative;
+    }
+
+    .footer-glow {
+        position: absolute;
+        top: -1px;
+        left: 0;
+        right: 0;
+        height: 1px;
+        background: linear-gradient(90deg, transparent, #00aeff, transparent);
+        animation: footerGlow 3s linear infinite;
+    }
+
+    @keyframes footerGlow {
+        0% { transform: translateX(-100%); }
+        100% { transform: translateX(100%); }
+    }
+
+    .social-links {
+        display: flex;
+        justify-content: center;
+        gap: 25px;
+        margin-top: 25px;
+    }
+
+    .social-links a {
+        color: rgba(255, 255, 255, 0.7);
+        font-size: 1.8em;
+        transition: all 0.3s ease;
+        display: inline-block;
+    }
+
+    .social-links a:hover {
+        color: #00aeff;
+        transform: translateY(-5px) rotate(10deg);
+        filter: drop-shadow(0 5px 15px rgba(0, 174, 255, 0.6));
+    }
+
+    /* Responsive Design */
+    @media (max-width: 768px) {
+        h1 { font-size: 2.5em; }
+        .logo { width: 150px; height: 150px; }
+        .teams-grid { grid-template-columns: 1fr; }
+        .action-buttons { flex-direction: column; align-items: center; }
+        .btn { width: 100%; max-width: 300px; justify-content: center; }
+    }
+</style>
+</head>
+<body>
+    <div class="bg-animation"></div>
+    <div class="stars" id="stars"></div>
+    <div class="grid-overlay"></div>
+    <div class="cyber-lines">
+        <div class="cyber-line horizontal" style="top: 20%;"></div>
+        <div class="cyber-line horizontal" style="top: 50%; animation-delay: 2s;"></div>
+        <div class="cyber-line horizontal" style="top: 80%; animation-delay: 4s;"></div>
+    </div>
+
+    <header>
+        <div class="logo-container">
+            <div class="logo">
+                <!-- PARTECH Logo Görseli -->
+                <img src="images/logo.png" alt="PARTECH Logo" class="logo-img">
+                
+                <!-- Orbiting particles -->
+                <div class="glow-particle" style="animation-delay: 0s;"></div>
+                <div class="glow-particle" style="animation-delay: 2s;"></div>
+                <div class="glow-particle" style="animation-delay: 4s;"></div>
+            </div>
+        </div>
+        <h1>IEEE KBU | PARTECH</h1>
+        <p class="subtitle">Savunma Teknolojileri Yarışması 2026</p>
+        <p class="tagline">Geleceğin Teknolojilerini Bugün Tasarlıyoruz</p>
+    </header>
+
+    <div class="container">
+        <h2 class="section-title">Yarışma Takımları</h2>
+        
+        <div class="teams-grid">
+            <div class="team-card">
+                <span class="team-icon">🛡️</span>
+                <h3>Hava Savunma Sistemleri</h3>
+                <p>Gelişmiş radar teknolojileri ve füze savunma sistemleri ile hava sahası güvenliğinde yenilikçi çözümler geliştiriyoruz.</p>
+                <a href="air-defense.html" class="status-badge status-active">Detayları Görüntüle →</a>
+            </div>
+
+            <div class="team-card">
+                <span class="team-icon">🚜</span>
+                <h3>İnsansız Kara Aracı</h3>
+                <p>Otonom navigasyon, yapay zeka ve sensör füzyonu teknolojileri ile insansız kara araçları tasarlıyoruz.</p>
+                <span class="status-badge status-coming">Yakında Başlıyor</span>
+            </div>
+
+            <div class="team-card">
+                <span class="team-icon">📡</span>
+                <h3>Kablosuz Haberleşme</h3>
+                <p>5G ve ötesi teknolojilerle güvenli, hızlı ve kesintisiz kablosuz iletişim sistemleri üzerinde çalışıyoruz.</p>
+                <span class="status-badge status-coming">Yakında Başlıyor</span>
+            </div>
+        </div>
+
+        <div class="action-buttons">
+            <a href="https://forms.gle/uZoPkLkNcC5Juk4x6" target="_blank" class="btn btn-primary">
+                <span>📝</span>
+                <span>Başvuru Formu</span>
+            </a>
+            <a href="https://www.instagram.com/ieeekarabuk/" target="_blank" class="btn btn-secondary">
+                <span>📸</span>
+                <span>Bizi Takip Et</span>
+            </a>
+        </div>
+    </div>
+
+    <footer>
+        <div class="footer-glow"></div>
+        <p style="margin-bottom: 10px; font-size: 1.1em;">© 2026 IEEE Karabük Üniversitesi Öğrenci Kolu</p>
+        <p style="color: rgba(0, 174, 255, 0.7); font-size: 0.9em;">Teknolojinin Öncüleri, Geleceğin Mimarları</p>
+        <div class="social-links">
+            <a href="https://www.instagram.com/ieeekarabuk/" target="_blank" title="Instagram">📷</a>
+        </div>
+    </footer>
+
+    <script>
+        // Create dynamic stars
+        function createStars() {
+            const starsContainer = document.getElementById('stars');
+            const starCount = 100;
+            
+            for (let i = 0; i < starCount; i++) {
+                const star = document.createElement('div');
+                star.className = 'star';
+                star.style.left = Math.random() * 100 + '%';
+                star.style.top = Math.random() * 100 + '%';
+                star.style.animationDelay = Math.random() * 4 + 's';
+                star.style.animationDuration = (3 + Math.random() * 2) + 's';
+                
+                // Random star sizes
+                const size = Math.random() * 3;
+                star.style.width = size + 'px';
+                star.style.height = size + 'px';
+                
+                starsContainer.appendChild(star);
+            }
+        }
+
+        // Smooth scroll animation
+        document.querySelectorAll('a[href^="#"]').forEach(anchor => {
+            anchor.addEventListener('click', function (e) {
+                e.preventDefault();
+                const href = this.getAttribute('href');
+                if (href.startsWith('#')) {
+                    const target = document.querySelector(href);
+                    if (target) {
+                        target.scrollIntoView({ behavior: 'smooth', block: 'start' });
+                    }
+                }
+            });
+        });
+
+        // Initialize stars on load
+        window.addEventListener('load', createStars);
+
+        // Add glitch effect on logo hover
+        const logo = document.querySelector('.logo');
+        logo.addEventListener('mouseenter', () => {
+            logo.style.animation = 'glitch 0.3s';
+            setTimeout(() => {
+                logo.style.animation = '';
+            }, 300);
+        });
+
+        // Add CSS for glitch effect
+        const style = document.createElement('style');
+        style.textContent = `
+            @keyframes glitch {
+                0%, 100% { transform: translate(0); filter: hue-rotate(0deg); }
+                20% { transform: translate(-2px, 2px); filter: hue-rotate(90deg); }
+                40% { transform: translate(-2px, -2px); filter: hue-rotate(180deg); }
+                60% { transform: translate(2px, 2px); filter: hue-rotate(270deg); }
+                80% { transform: translate(2px, -2px); filter: hue-rotate(360deg); }
+            }
+        `;
+        document.head.appendChild(style);
+
+        // Parallax effect on mouse move
+        document.addEventListener('mousemove', (e) => {
+            const x = e.clientX / window.innerWidth;
+            const y = e.clientY / window.innerHeight;
+            
+            const logo = document.querySelector('.logo-container');
+            if (logo) {
+                logo.style.transform = `
+                    translateX(${(x - 0.5) * 20}px) 
+                    translateY(${(y - 0.5) * 20}px)
+                `;
+            }
+        });
+    </script>
+</body>
+</html>
