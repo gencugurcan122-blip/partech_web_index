@@ -99,12 +99,14 @@
         align-items: center;
         justify-content: center;
         margin: 0 auto;
+        background: rgba(0, 174, 255, 0.1);
+        border-radius: 50%;
+        border: 2px solid rgba(0, 174, 255, 0.3);
     }
 
-    .logo-img {
-        width: 100%;
-        height: 100%;
-        object-fit: contain;
+    .logo-placeholder {
+        font-size: 4em;
+        color: #00aeff;
         filter: drop-shadow(0 0 30px rgba(0, 174, 255, 0.8))
                 drop-shadow(0 0 60px rgba(0, 174, 255, 0.4));
         animation: neonPulse 2s ease-in-out infinite;
@@ -514,8 +516,8 @@
     <header>
         <div class="logo-container">
             <div class="logo">
-                <!-- PARTECH Logo Görseli -->
-                <img src="Elektrik Mavi Neon Logo.png" alt="PARTECH Logo" class="logo-img">
+                <!-- Logo placeholder yerine emojiler kullanıyoruz -->
+                <div class="logo-placeholder">🛡️</div>
                 
                 <!-- Orbiting particles -->
                 <div class="glow-particle" style="animation-delay: 0s;"></div>
@@ -537,7 +539,7 @@
                 <h3>Hava Savunma Sistemleri</h3>
                 <p>Gelişmiş radar teknolojileri ve füze savunma sistemleri ile hava sahası güvenliğinde yenilikçi çözümler geliştiriyoruz.</p>
                 <div class="action-buttons">
-                    <a href="https://gencugurcan122-blip.github.io/partech_web_a/" class="btn btn-primary">
+                    <a href="hava-savunma.html" class="btn btn-primary">
                         <span>📝</span>
                         <span>Detayları Görüntüle</span>
                     </a>
