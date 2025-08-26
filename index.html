@@ -272,8 +272,9 @@
     }
 
     .team-icon {
-        font-size: 4em;
-        margin-bottom: 20px;
+        width: 64px;
+        height: 64px;
+        margin: 0 auto 20px;
         display: block;
         filter: drop-shadow(0 0 20px rgba(0, 174, 255, 0.5));
         animation: iconFloat 3s ease-in-out infinite;
@@ -422,6 +423,13 @@
         font-size: 0.9em;
     }
 
+    /* Button icon styles */
+    .btn-icon {
+        width: 20px;
+        height: 20px;
+        filter: drop-shadow(0 0 5px rgba(0, 174, 255, 0.8));
+    }
+
     /* Cyber Lines Animation */
     .cyber-lines {
         position: fixed;
@@ -544,13 +552,11 @@
         
         <div class="teams-grid">
             <div class="team-card">
-                <span class="team-icon"><🛡️>
-</span>
+                <img src="hss_logo.png" alt="Hava Savunma Sistemi" class="team-icon">
                 <h3>Hava Savunma Sistemleri</h3>
                 <p>Gelişmiş radar teknolojileri ve füze savunma sistemleri ile hava sahası güvenliğinde yenilikçi çözümler geliştiriyoruz.</p>
                 <a href="https://gencugurcan122-blip.github.io/partech_hava-savunma/" target="_blank" class="btn btn-primary">
-                    <span><img src=🛡️>
-</span>
+                    <img src="hss_logo.png" alt="HSS" class="btn-icon">
                     <span>Takımı İncele</span>
                 </a>
             </div>
